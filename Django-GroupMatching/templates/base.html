@@ -1,0 +1,107 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="description" content="A Group Matching System">
+    <meta name="viewport" content="initial-scale=1.0,width=device-width">
+    <link href="{% static 'GroupMatching/normalize.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'GroupMatching/style.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'GroupMatching/mobile.css' %}" rel="stylesheet" type="text/css" media="screen and (max-width: 768px) and (min-width: 0px)">
+    <title>A Group Matching System with Python Django</title>
+</head>
+
+  <body>
+
+    <div class="all-page">
+
+      <h1 class="main-title">A Group Matching System</h1>
+
+      <div style="width: 90%;"> </div>
+
+      <div class="choose-lang"> </div>
+
+      <p>A Group Matching System with Python Django</p>
+
+      <p class="margin1 link-box">
+
+        {% if user.is_authenticated %}
+
+        <a href="/project/create" class="blue-link">
+          Create a Project
+        </a>
+        |
+        <a href="/group/create" class="blue-link">
+          Create a Group
+        </a>
+        |
+        <a href="/group/join/" class="blue-link">
+          Join a Group
+        </a>
+        |
+        <a href="/group/quit/" class="blue-link">
+          Quit a Group
+        </a>
+        |
+        <a href="/group/show/" class="blue-link">
+          Show Groups Info
+        </a>
+        |
+        {% endif %}
+
+        {% if not user.is_authenticated %}
+
+        <a href="/login/" class="blue-link">
+          Login
+        </a>
+        |
+
+        {% endif %}
+
+        {% if user.is_authenticated %}
+
+        <a href="/logout/" class="blue-link">
+          Logout
+        </a>
+        |
+
+        {% endif %}
+
+        {% if not user.is_authenticated %}
+
+        <a href="/signup/" class="blue-link">
+          SignUp
+        </a>
+        |
+
+        {% endif %}
+
+        <a href="/home/" class="blue-link">
+          Back to Home
+        </a>
+
+      </p>
+
+      {% block content %}{% endblock %}
+
+      <div style="min-height: 300px; margin:2em">
+        <div style="margin-right: 2em; float:left">
+        </div>
+        <div style="float:left">
+        </div>
+        <div style="clear:both"></div>
+      </div>
+
+    </div>
+
+     <div class="bottom-hint">
+        <div>The Chinese University of Hong Kong</div>
+      </div>
+
+  </body>
+
+</html>
+

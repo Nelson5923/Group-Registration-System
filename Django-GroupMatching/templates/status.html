@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block content %}
+
+  <form method="post" enctype="multipart/form-data" id="GroupForm" load-group-url="{% url 'ajax_load_group' %}">
+
+    {% csrf_token %}
+
+    {% for field in form %}
+      <div class="field">
+          {{field.label}}
+          {{field}}<button type="submit">Submit</button>
+          {{field.errors}}
+      </div>
+    {% endfor %}
+
+    {% if messages %}
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+    {% endif %}
+
+  </form>
+
+{% if group %}
+
+<p>##### Group Status #####</p>
+
+    <p> Project Name: {{group.project.project_name}} </p>
+    <p> Maximum Number of Member: {{group.project.max_member}}</p>
+    <p> Deadline: {{group.project.deadline|date:"d/m/Y" }} </p>
+    <p> Group Name: {{group.group_name}} </p>
+    <p> Group Description: {{group.description}}</p>
+    <p> Current Member: </p>
+
+    {% for member in members %}
+        {{ forloop.counter }}. {{member.user.username}} </br>
+    {% endfor %}
+
+{% endif %}
+
+{% endblock %}

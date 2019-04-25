@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block content %}
+
+  <form method="post" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    <div class="field">
+      Username:
+      {{ form.username }}
+      {{ form.username.errors }}
+    </div>
+
+    <div class="field">
+      Password:
+      {{ form.password1 }}
+      {{ form.password1.errors }}
+    </div>
+
+    <div class="field">
+      Confirm your password:
+      {{ form.password2 }}
+      {{ form.password2.errors }}
+    </div>
+
+
+    <div class="field">
+      Email (Optional):
+      {{ form.email }}
+      {{ form.email.errors }}
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+    {% endif %}
+
+    <button type="submit">Sign Up</button>
+
+  </form>
+
+{% endblock %}
+

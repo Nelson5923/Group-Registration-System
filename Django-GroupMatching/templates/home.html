@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block content %}
+
+  {% if user.is_authenticated %}
+      <p>Current User: {{ user.get_username }}</p>
+  {% endif %}
+
+  {% if messages %}
+    {% for message in messages %}
+      <p>{{message}}</p>
+    {% endfor %}
+  {% endif %}
+
+{% endblock %}
+
